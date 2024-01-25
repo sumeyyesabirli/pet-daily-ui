@@ -1,0 +1,11 @@
+.topbar{
+  text-align: center;
+  color: white;
+  position: fixed;
+  top:0;
+  left:0;
+  right: 0;
+  width: 100%;
+  padding:1%;
+  background-color: rgb(44, 51, 51)
+}
