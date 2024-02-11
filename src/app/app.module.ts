@@ -8,6 +8,9 @@ import { TopbarComponent } from './_layout/components/topbar/topbar.component';
 import { MenuComponent } from './_layout/menu/menu.component';
 import { ContentComponent } from './_layout/content/content.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NotificationService } from './_services/notification.service';
+import { NotifierModule } from 'angular-notifier';
+import { notifierOptions } from './_services/notifierOptions';
 
 
 @NgModule({
@@ -22,9 +25,10 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NotifierModule.withConfig(notifierOptions),
   ],
-  providers: [],
+  providers: [NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

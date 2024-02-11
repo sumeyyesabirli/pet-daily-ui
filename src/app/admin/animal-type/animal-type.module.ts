@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { AnimalTypeComponent } from './animal-type.component';
 import { RouterModule } from '@angular/router';
 import { CustomGridModule } from 'src/app/_components/custom-grid/custom-grid.module';
+import { AddAnimalTypeComponent } from './add-animal-type/add-animal-type.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -12,8 +14,10 @@ import { CustomGridModule } from 'src/app/_components/custom-grid/custom-grid.mo
         path: '', component: AnimalTypeComponent
       }
     ]),
-    CustomGridModule
+    CustomGridModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  declarations: [AnimalTypeComponent]
+  declarations: [AnimalTypeComponent, AddAnimalTypeComponent]
 })
 export class AnimalTypeModule { }

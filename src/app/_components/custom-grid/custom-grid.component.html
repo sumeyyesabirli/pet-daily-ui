@@ -1,19 +1,40 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <table class="table">
+      <table class="table table-bordered table-hover">
 
         <thead>
           <tr>
+            <td [attr.colspan]="headers.length + 1">
+              <div class="btn-group m-2">
+                <div *ngFor="let button of headerButtons">
+                  <button (click)="button.action()" style="margin-left: 2px;" [class]="button.styleCss">
+                    <i [class]="button.icon"></i>
+                    {{button.text}}</button>
+                </div>
+              </div>
+
+            </td>
+          </tr>
+          <tr>
             <th *ngFor="let header of headers">{{ header }}</th>
+            <th> * </th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of data">
             <td *ngFor="let col of columns">{{ item[col.key] }}</td>
+            <td>
+              <div class="btn-group m-2">
+                <div *ngFor="let button of tdButtons">
+                  <button (click)="button.action(item.id)" style="margin-left: 2px;" [class]="button.styleCss">
+                    <i [class]="button.icon"></i>
+                  </button>
+                </div>
+              </div>
+            </td>
           </tr>
         </tbody>
-
       </table>
     </div>
   </div>

@@ -17,4 +17,8 @@ export class AnimalTypeService {
   getAnimalTypes() {
     return this.httpService.get("/animalType");
   }
+
+  addAnimalType(data: AnimalType) {
+    return this.httpService.post("/animalType", data);
+  }
 }

@@ -7,7 +7,7 @@ import { CustomGridComponent } from './custom-grid.component';
   imports: [
     CommonModule
   ],
-  declarations: [CustomGridComponent    ],
+  declarations: [CustomGridComponent],
   exports: [CustomGridComponent]
 })
 export class CustomGridModule { }

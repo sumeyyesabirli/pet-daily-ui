@@ -1,0 +1,17 @@
+<div class="form">
+  <div class="form-group">
+    <label>İsim</label>
+    <input class="form-control" [(ngModel)]="addedData.name" placeholder="Lütfen isim giriniz">
+  </div>
+  <div class="form-group">
+    <label>Kod</label>
+    <input class="form-control" [(ngModel)]="addedData.code" placeholder="Lütfen kod giriniz">
+  </div>
+  <div class="form-group">
+    <label>Açıklama</label>
+    <input class="form-control" [(ngModel)]="addedData.description" placeholder="Lütfen açıklama giriniz">
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success" (click)="addData()">Ekle</button>
+  </div>
+</div>
