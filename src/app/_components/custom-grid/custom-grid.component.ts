@@ -13,6 +13,8 @@ export class CustomGridComponent implements OnInit {
   body: any[] = [];
   constructor() { }
 
+
+
   ngOnInit() {
     this.headers = this.columns.map((x: any) => {
       return x.caption

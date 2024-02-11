@@ -2,23 +2,18 @@
   <div class="row">
     <div class="col-md-12">
       <table class="table">
+
         <thead>
           <tr>
-            <th *ngFor="let head of headers">
-              {{head}}
-            </th>
+            <th *ngFor="let header of headers">{{ header }}</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let dt of data">
-            <td>
-              {{dt.id}}
-            </td>
-            <td>
-              {{dt.name}}
-            </td>
+          <tr *ngFor="let item of data">
+            <td *ngFor="let col of columns">{{ item[col.key] }}</td>
           </tr>
         </tbody>
+
       </table>
     </div>
   </div>
