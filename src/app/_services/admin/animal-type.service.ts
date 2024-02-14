@@ -14,15 +14,15 @@ export class AnimalTypeService {
 
   }
 
-  getAnimalTypes() {
-    return this.httpService.get("/animalType");
+  getAnimalTypes(pagining: any) {
+    return this.httpService.get("/animalType", pagining);
   }
 
   addAnimalType(data: AnimalType) {
     return this.httpService.post("/animalType", data);
   }
 
-  deleteAnimalType(id:number){
+  deleteAnimalType(id: number) {
     return this.httpService.delete(`/animalType/${id}`);
   }
 }

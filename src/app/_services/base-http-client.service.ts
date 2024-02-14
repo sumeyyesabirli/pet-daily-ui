@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BaseResponse } from '../_models/base-response';
@@ -14,8 +14,8 @@ export class HttpClientService {
 
   }
 
-  get(path: string): Observable<BaseResponse> {
-    return this.http.get<BaseResponse>(this.url + path);
+  get(path: string, params?: HttpParams): Observable<BaseResponse> {
+    return this.http.get<BaseResponse>(this.url + path, { params: params });
   }
 
   post(path: string, model: any): Observable<BaseResponse> {

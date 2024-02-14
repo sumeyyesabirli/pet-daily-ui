@@ -1,6 +1,5 @@
-
 <ng-container>
-  <app-grid [externalButtons]="externalButtons" [data]="paginatedData" [columns]="columns"></app-grid>
+  <app-grid [externalButtons]="externalButtons" [pageResult]="pageResult" [columns]="columns"></app-grid>
 </ng-container>
 
 <div class="modal" role="dialog" [ngStyle]="{'display':displayStyle}">
@@ -19,4 +18,5 @@
   </div>
 </div>
 
-<app-pagination [totalItems]="data.length" [itemPerPage]="itemPerPage" [currentPage]="currentPage" (onClick)="changePage($event)"></app-pagination>
+<!--<app-pagination [totalItems]="data.length" [itemPerPage]="itemPerPage" [currentPage]="currentPage" (onClick)="changePage($event)"></app-pagination>
+-->

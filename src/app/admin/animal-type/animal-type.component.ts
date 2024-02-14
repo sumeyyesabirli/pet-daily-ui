@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ExternalButtonModel } from 'src/app/_layout/_models/external-button-model';
 import { AnimalType } from 'src/app/_models/animal-type';
+import { PageResult } from 'src/app/_models/page-result';
 import { AnimalTypeService } from 'src/app/_services/admin/animal-type.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 
@@ -10,12 +11,11 @@ import { NotificationService } from 'src/app/_services/notification.service';
   styleUrls: ['./animal-type.component.css']
 })
 export class AnimalTypeComponent implements OnInit {
-  constructor(private _service: AnimalTypeService, private _notificationService: NotificationService) {}
+  constructor(private _service: AnimalTypeService, private _notificationService: NotificationService) { }
 
-  itemPerPage = 3;
+  itemPerPage = 5;
   currentPage = 1;
-
-  data: AnimalType[] = [];
+  pageResult: PageResult = new PageResult();
   columns: any[] = [
     { key: "id", caption: "Id" },
     { key: "code", caption: "Kod" },
@@ -26,7 +26,7 @@ export class AnimalTypeComponent implements OnInit {
   externalButtons: ExternalButtonModel[] = [
     {
       id: "refresh",
-      action: () => this.getData(),
+      action: (page: any, perPage: any) => this.getData(page, perPage),
       text: "Yeniden Yükle",
       styleCss: "btn btn-info",
       order: 1,
@@ -59,7 +59,7 @@ export class AnimalTypeComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.getData();
+    this.getData(this.page, this.perPage);
   }
 
   updateData(id: any) {
@@ -69,18 +69,28 @@ export class AnimalTypeComponent implements OnInit {
   deleteData(id: number) {
     this._service.deleteAnimalType(id).subscribe(res => {
       if (res.statusCode == 200) {
-        this.getData();
+        this.getData(this.page, this.perPage);
       } else {
-          //error basabiliriz..
+        //error basabiliriz..
       }
     });
   }
-
-  getData() {
-    this.data = [];
-    this._service.getAnimalTypes().subscribe(res => {
+  page: number = 1;
+  perPage: number = 5;
+  getData(page: number, perPage: number) {
+    this.page = page;
+    this.perPage = perPage;
+    this.pageResult.data = [];
+    let pagining = {
+      page: page,
+      perPage: perPage
+    };
+    this._service.getAnimalTypes(pagining).subscribe(res => {
       if (res.statusCode == 200) {
-        this.data = res.data;
+        this.pageResult.count = res.count;
+        this.pageResult.data = res.data;
+        this.pageResult.totalCount = res.totalCount;
+        console.log(res);
       } else {
         //error basabiliriz..
       }
@@ -95,16 +105,7 @@ export class AnimalTypeComponent implements OnInit {
 
   closePopup() {
     this.displayStyle = "none";
-    this.getData();
+    this.getData(this.page, this.perPage);
   }
 
-  get paginatedData() {
-    const start = (this.currentPage - 1) * this.itemPerPage;
-    const end = start + this.itemPerPage;
-    return this.data.slice(start, end);
-  }
-
-  changePage(page: number) {
-    this.currentPage = page;
-  }
 }
