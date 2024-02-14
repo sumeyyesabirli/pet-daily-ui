@@ -1,5 +1,6 @@
+
 <ng-container>
-  <app-grid [externalButtons]="externalButtons" [data]="data" [columns]="columns"></app-grid>
+  <app-grid [externalButtons]="externalButtons" [data]="paginatedData" [columns]="columns"></app-grid>
 </ng-container>
 
 <div class="modal" role="dialog" [ngStyle]="{'display':displayStyle}">
@@ -12,10 +13,10 @@
         <app-add-animal-type></app-add-animal-type>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger" (click)="closePopup()">
-          İptal
-        </button>
+        <button type="button" class="btn btn-danger" (click)="closePopup()">İptal</button>
       </div>
     </div>
   </div>
 </div>
+
+<app-pagination [totalItems]="data.length" [itemPerPage]="itemPerPage" [currentPage]="currentPage" (onClick)="changePage($event)"></app-pagination>
