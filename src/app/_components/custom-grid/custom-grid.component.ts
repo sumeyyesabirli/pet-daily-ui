@@ -14,8 +14,11 @@ export class CustomGridComponent implements OnInit {
   tdButtons: ExternalButtonModel[] = [];
   headers: any[] = [];
   body: any[] = [];
-  page: number = 1;
-  perPage: number = 5;
+  pagining: any = {
+    page: 1,
+    perPage: 5,
+    sort: null
+  }
   constructor() { }
   getButton: any;
 
@@ -29,7 +32,10 @@ export class CustomGridComponent implements OnInit {
     })
     console.log(this.headerButtons);
     this.headers = this.columns.map((x: any) => {
-      return x.caption
+      return {
+        caption: x.caption,
+        key: x.key
+      }
     });
     this.getButton = this.externalButtons.find(x => x.id == "refresh");
   }
@@ -38,26 +44,36 @@ export class CustomGridComponent implements OnInit {
     let b: boolean = false;
     if (e == '+') {
       if (this.pageResult.data && this.pageResult.data.length > 0) {
-        this.page++;
+        this.pagining.page++;
         b = true;
       } else {
         b = false;
       }
     }
     else {
-      if (this.page > 1) {
-        this.page--;
+      if (this.pagining.page > 1) {
+        this.pagining.page--;
         b = true;
       } else {
         b = false;
       }
     }
     if (b)
-      this.getButton.action(this.page, this.perPage);
+      this.getButton.action(this.pagining);
   }
 
   perPageChange(perPage: any) {
-    this.perPage = perPage;
-    this.getButton.action(this.page, this.perPage);
+    this.pagining.perPage = perPage;
+    this.getButton.action(this.pagining);
+  }
+
+  shortAsc(key: any) {
+    this.pagining.sort = `${key} asc`;
+    this.getButton.action(this.pagining);
+  }
+
+  shortDesc(key: any) {
+    this.pagining.sort = `${key} desc`;
+    this.getButton.action(this.pagining);
   }
 }

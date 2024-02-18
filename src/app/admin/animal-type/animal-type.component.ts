@@ -26,7 +26,7 @@ export class AnimalTypeComponent implements OnInit {
   externalButtons: ExternalButtonModel[] = [
     {
       id: "refresh",
-      action: (page: any, perPage: any) => this.getData(page, perPage),
+      action: (pagining: any) => this.getData(pagining),
       text: "Yeniden Yükle",
       styleCss: "btn btn-info",
       order: 1,
@@ -59,7 +59,7 @@ export class AnimalTypeComponent implements OnInit {
   ];
 
   ngOnInit() {
-    this.getData(this.page, this.perPage);
+    this.getData(this.pagining);
   }
 
   updateData(id: any) {
@@ -69,23 +69,20 @@ export class AnimalTypeComponent implements OnInit {
   deleteData(id: number) {
     this._service.deleteAnimalType(id).subscribe(res => {
       if (res.statusCode == 200) {
-        this.getData(this.page, this.perPage);
+        this.getData(this.pagining);
       } else {
         //error basabiliriz..
       }
     });
   }
-  page: number = 1;
-  perPage: number = 5;
-  getData(page: number, perPage: number) {
-    this.page = page;
-    this.perPage = perPage;
-    this.pageResult.data = [];
-    let pagining = {
-      page: page,
-      perPage: perPage
-    };
-    this._service.getAnimalTypes(pagining).subscribe(res => {
+  pagining: any = {
+    page: 1,
+    perPage: 5,
+    sort: null
+  };
+  getData(pagining: any) {
+    this.pagining = pagining ?? this.pagining;
+    this._service.getAnimalTypes(this.pagining).subscribe(res => {
       if (res.statusCode == 200) {
         this.pageResult.count = res.count;
         this.pageResult.data = res.data;
@@ -105,7 +102,7 @@ export class AnimalTypeComponent implements OnInit {
 
   closePopup() {
     this.displayStyle = "none";
-    this.getData(this.page, this.perPage);
+    this.getData(this.pagining);
   }
 
 }

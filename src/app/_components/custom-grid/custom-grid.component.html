@@ -17,7 +17,11 @@
             </td>
           </tr>
           <tr>
-            <th *ngFor="let header of headers">{{ header }}</th>
+            <th *ngFor="let header of headers">
+              {{ header.caption }}
+              <i (click)="shortAsc(header.key)" class="fa fa-arrow-up"> </i>
+              <i (click)="shortDesc(header.key)" class="fa fa-arrow-down"></i>
+            </th>
             <th> * </th>
           </tr>
         </thead>
@@ -53,7 +57,7 @@
           <button (click)="pageCounter('+')" style="margin-left: 2px;" class="btn">
             <i class="fa fa-arrow-right"></i>
           </button>
-          Page: {{page}} - Count : {{pageResult.count}} - Total Count : {{pageResult.totalCount}}
+          Page: {{pagining.page}} - Count : {{pageResult.count}} - Total Count : {{pageResult.totalCount}}
         </div>
 
         <div>
