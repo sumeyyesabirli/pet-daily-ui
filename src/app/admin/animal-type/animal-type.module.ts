@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { CustomGridModule } from 'src/app/_components/custom-grid/custom-grid.module';
 import { AddAnimalTypeComponent } from './add-animal-type/add-animal-type.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PaginationModule } from 'src/app/pagination/pagination.module';
+import { UpdateAnimalTypeComponent } from './update-animal-type/update-animal-type.component';
 
 
 
@@ -20,12 +20,11 @@ import { PaginationModule } from 'src/app/pagination/pagination.module';
     ]),
     CustomGridModule,
     ReactiveFormsModule,
-    FormsModule,
-    PaginationModule
+    FormsModule
 
 
   ],
-  declarations: [AnimalTypeComponent, AddAnimalTypeComponent]
+  declarations: [AnimalTypeComponent, AddAnimalTypeComponent,UpdateAnimalTypeComponent]
 
 })
 export class AnimalTypeModule { }

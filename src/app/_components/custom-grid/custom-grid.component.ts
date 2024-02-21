@@ -17,7 +17,8 @@ export class CustomGridComponent implements OnInit {
   pagining: any = {
     page: 1,
     perPage: 5,
-    sort: null
+    sort: null,
+    filter: null,
   }
   constructor() { }
   getButton: any;
@@ -76,4 +77,12 @@ export class CustomGridComponent implements OnInit {
     this.pagining.sort = `${key} desc`;
     this.getButton.action(this.pagining);
   }
+
+   filter(key: string) {
+    var header = this.headers.find(header => header.key === key);
+    var filterValue = header.filterValue;
+    this.pagining.filter = `${key}:${filterValue}`;
+    this.getButton.action(this.pagining);
+  }
+
 }

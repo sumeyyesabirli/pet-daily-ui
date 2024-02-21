@@ -2,7 +2,6 @@
   <div class="row">
     <div class="col-md-12">
       <table class="table table-bordered table-hover">
-
         <thead>
           <tr>
             <td [attr.colspan]="headers.length + 1">
@@ -10,16 +9,26 @@
                 <div *ngFor="let button of headerButtons">
                   <button (click)="button.action()" style="margin-left: 2px;" [class]="button.styleCss">
                     <i [class]="button.icon"></i>
-                    {{button.text}}</button>
+                    {{button.text}}
+                  </button>
                 </div>
               </div>
-
             </td>
           </tr>
           <tr>
             <th *ngFor="let header of headers">
+              <div class="row">
+                <div class="col-md-9">
+                  <input class="form-control" [(ngModel)]="header.filterValue" placeholder="{{ header.caption }}">
+                </div>
+                <div class="col-md-3">
+                  <button class="btn" (click)="filter(header.key)">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </div>
               {{ header.caption }}
-              <i (click)="shortAsc(header.key)" class="fa fa-arrow-up"> </i>
+              <i (click)="shortAsc(header.key)" class="fa fa-arrow-up"></i>
               <i (click)="shortDesc(header.key)" class="fa fa-arrow-down"></i>
             </th>
             <th> * </th>
@@ -59,10 +68,7 @@
           </button>
           Page: {{pagining.page}} - Count : {{pageResult.count}} - Total Count : {{pageResult.totalCount}}
         </div>
-
-        <div>
-
-        </div>
+        <div></div>
       </tfoot>
     </div>
   </div>

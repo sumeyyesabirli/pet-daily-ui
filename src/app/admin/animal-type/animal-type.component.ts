@@ -11,6 +11,7 @@ import { NotificationService } from 'src/app/_services/notification.service';
   styleUrls: ['./animal-type.component.css']
 })
 export class AnimalTypeComponent implements OnInit {
+  data: AnimalType = new AnimalType();
   constructor(private _service: AnimalTypeService, private _notificationService: NotificationService) { }
 
   itemPerPage = 5;
@@ -22,6 +23,12 @@ export class AnimalTypeComponent implements OnInit {
     { key: "name", caption: "İsim" },
     { key: "description", caption: "Açıklama" }
   ];
+  pagining: any = {
+    page: 1,
+    perPage: 5,
+    sort: null,
+    filter:null
+  };
 
   externalButtons: ExternalButtonModel[] = [
     {
@@ -42,7 +49,7 @@ export class AnimalTypeComponent implements OnInit {
     },
     {
       id: "update",
-      action: () => this.updateData(this),
+      action:() => this.updateData(this.data.id),
       text: "Düzenle",
       styleCss: "btn btn-warning",
       order: 3,
@@ -60,11 +67,16 @@ export class AnimalTypeComponent implements OnInit {
 
   ngOnInit() {
     this.getData(this.pagining);
+
   }
 
-  updateData(id: any) {
-    console.log("update data tetiklendi " + id);
+
+
+  updateData(animalTypeId: number) {
+    console.log("update data tetiklendi " + animalTypeId);
+
   }
+
 
   deleteData(id: number) {
     this._service.deleteAnimalType(id).subscribe(res => {
@@ -75,11 +87,7 @@ export class AnimalTypeComponent implements OnInit {
       }
     });
   }
-  pagining: any = {
-    page: 1,
-    perPage: 5,
-    sort: null
-  };
+
   getData(pagining: any) {
     this.pagining = pagining ?? this.pagining;
     this._service.getAnimalTypes(this.pagining).subscribe(res => {
