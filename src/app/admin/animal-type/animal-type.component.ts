@@ -13,10 +13,12 @@ import { NotificationService } from 'src/app/_services/notification.service';
 export class AnimalTypeComponent implements OnInit {
   data: AnimalType = new AnimalType();
   constructor(private _service: AnimalTypeService, private _notificationService: NotificationService) { }
-
+  updatePopupVisible: boolean = false;
+  addPopupVisible: boolean = false;
   itemPerPage = 5;
   currentPage = 1;
   pageResult: PageResult = new PageResult();
+  updatedAnimalTypeId: any;
   columns: any[] = [
     { key: "id", caption: "Id" },
     { key: "code", caption: "Kod" },
@@ -27,7 +29,7 @@ export class AnimalTypeComponent implements OnInit {
     page: 1,
     perPage: 5,
     sort: null,
-    filter:null
+    filter: null
   };
 
   externalButtons: ExternalButtonModel[] = [
@@ -49,7 +51,7 @@ export class AnimalTypeComponent implements OnInit {
     },
     {
       id: "update",
-      action:() => this.updateData(this.data.id),
+      action: (id: any) => this.openUpdatePopup(id),
       text: "Düzenle",
       styleCss: "btn btn-warning",
       order: 3,
@@ -72,12 +74,6 @@ export class AnimalTypeComponent implements OnInit {
 
 
 
-  updateData(animalTypeId: number) {
-    console.log("update data tetiklendi " + animalTypeId);
-
-  }
-
-
   deleteData(id: number) {
     this._service.deleteAnimalType(id).subscribe(res => {
       if (res.statusCode == 200) {
@@ -95,7 +91,6 @@ export class AnimalTypeComponent implements OnInit {
         this.pageResult.count = res.count;
         this.pageResult.data = res.data;
         this.pageResult.totalCount = res.totalCount;
-        console.log(res);
       } else {
         //error basabiliriz..
       }
@@ -103,14 +98,32 @@ export class AnimalTypeComponent implements OnInit {
   }
 
   displayStyle = "none";
-
+  displayStyleUpdate = "none";
   openPopup() {
     this.displayStyle = "block";
+    this.addPopupVisible = true;
   }
 
   closePopup() {
     this.displayStyle = "none";
     this.getData(this.pagining);
+    this.addPopupVisible = false;
   }
 
+  openUpdatePopup(animalTypeId: any) {
+    this.displayStyleUpdate = "block";
+    if (animalTypeId) {
+      this.updatePopupVisible = true;
+      this.updatedAnimalTypeId = animalTypeId;
+    }
+    else {
+      alert("animal type id cannot be null");
+    }
+  }
+
+  closeUpdatePopup() {
+    this.displayStyleUpdate = "none";
+    this.updatePopupVisible = false;
+    this.getData(this.pagining);
+  }
 }

@@ -11,14 +11,24 @@ import { NotificationService } from 'src/app/_services/notification.service';
 export class UpdateAnimalTypeComponent implements OnInit {
   @Input() id: any = null;
   data: AnimalType = new AnimalType();
-  constructor(private _service: AnimalTypeService, private _notificationService: NotificationService) {}
+  constructor(private _service: AnimalTypeService, private _notificationService: NotificationService) { }
 
   ngOnInit(): void {
-    this._service.getAnimalTypeById(this.id);
+    if (this.id) {
+      this._service.getAnimalTypeById(this.id).subscribe((data) => {
+        this.data = data.data;
+      });
+    }
   }
 
   updateData() {
     if (this.data.id) {
-      this._service.updateAnimalType(this.data.id, this.data).subscribe();
+      let data = {
+        code: this.data.code,
+        name: this.data.name,
+        description: this.data.description
+      }
+      this._service.updateAnimalType(this.data.id, data).subscribe();
     }
-}}
+  }
+}

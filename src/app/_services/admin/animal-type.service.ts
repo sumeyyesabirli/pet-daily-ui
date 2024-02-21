@@ -25,7 +25,7 @@ export class AnimalTypeService {
   deleteAnimalType(id: number) {
     return this.httpService.delete(`/animalType/${id}`);
   }
-  updateAnimalType(id: number, data: AnimalType){
+  updateAnimalType(id: number, data: any) {
     return this.httpService.put(`/animalType/${id}`, data);
   }
   getAnimalTypeById(id: number) {

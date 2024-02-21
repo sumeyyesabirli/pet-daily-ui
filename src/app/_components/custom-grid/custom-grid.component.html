@@ -7,16 +7,6 @@
             <td [attr.colspan]="headers.length + 1">
               <div class="btn-group m-2">
                 <div *ngFor="let button of headerButtons">
-                  <!--
-                    top sümeyye
-
-                 -->
-
-
-
-
-
-
                   <button (click)="button.action()" style="margin-left: 2px;" [class]="button.styleCss">
                     <i [class]="button.icon"></i>
                     {{button.text}}
