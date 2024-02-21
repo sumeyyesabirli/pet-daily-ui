@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     AdminRoutingModule,
     FormsModule
-
   ],
   declarations: [AdminComponent],
   providers: []

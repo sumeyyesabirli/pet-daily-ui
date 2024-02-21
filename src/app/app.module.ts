@@ -11,12 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NotificationService } from './_services/notification.service';
 import { NotifierModule } from 'angular-notifier';
 import { notifierOptions } from './_services/notifierOptions';
-import { LoginModule } from './_auth/login/login.module';
-
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,16 +18,12 @@ import { LoginModule } from './_auth/login/login.module';
     TopbarComponent,
     MenuComponent,
     ContentComponent,
-
-
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NotifierModule.withConfig(notifierOptions),
-    LoginModule
-
   ],
   providers: [NotificationService],
   bootstrap: [AppComponent]
