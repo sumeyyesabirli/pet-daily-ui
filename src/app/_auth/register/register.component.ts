@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/_models/user';
 import { UserService } from 'src/app/_services/admin/user.service';
-import { NotificationService } from 'src/app/_services/notification.service';
+
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ export class RegisterComponent implements OnInit {
   addedUser: User = new User();
   passwordVisible: boolean = false;
 
-  constructor(private _service: UserService, private _notificationService: NotificationService) { }
+  constructor(private _service: UserService, private _notificationService: ToastrService) { }
 
   ngOnInit() {
   }

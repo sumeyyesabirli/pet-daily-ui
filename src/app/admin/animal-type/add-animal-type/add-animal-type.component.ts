@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { AnimalType } from 'src/app/_models/animal-type';
 import { AnimalTypeService } from 'src/app/_services/admin/animal-type.service';
-import { NotificationService } from 'src/app/_services/notification.service';
+
 
 @Component({
   selector: 'app-add-animal-type',
@@ -13,7 +14,7 @@ export class AddAnimalTypeComponent implements OnInit {
   @Input() id: any = null;
   addedData: AnimalType = new AnimalType();
 
-  constructor(private _service: AnimalTypeService, private _notificationService: NotificationService) {
+  constructor(private _service: AnimalTypeService, private _notificationService: ToastrService) {
 
   }
   ngOnInit(): void {
@@ -33,7 +34,7 @@ export class AddAnimalTypeComponent implements OnInit {
       }
     }, err => {
       console.log(err);
-      this._notificationService.error(err);
+      this._notificationService.error(err.message);
     });
   }
 }
