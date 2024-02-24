@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-import { NotifierService } from 'angular-notifier';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class NotificationService {
-
-
-  constructor(private notifierService: ToastrService) { }
+  constructor(private notifierService: ToastrService) {}
 
   notifySuccess(message: string) {
     this.notifierService.success(message);
@@ -20,4 +17,3 @@ export class NotificationService {
     this.notifierService.warning(message);
   }
 }
-

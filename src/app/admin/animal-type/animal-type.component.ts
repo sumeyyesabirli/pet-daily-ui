@@ -1,18 +1,33 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ExternalButtonModel } from 'src/app/_layout/_models/external-button-model';
 import { AnimalType } from 'src/app/_models/animal-type';
 import { PageResult } from 'src/app/_models/page-result';
 import { AnimalTypeService } from 'src/app/_services/admin/animal-type.service';
 import { NotificationService } from 'src/app/_services/notification.service';
+import {
+  SpinnerBaseComponent,
+  SpinnerType,
+} from 'src/app/spinner-base/spinner-base.component';
 
 @Component({
   selector: 'app-animal-type',
   templateUrl: './animal-type.component.html',
-  styleUrls: ['./animal-type.component.css']
+  styleUrls: ['./animal-type.component.css'],
 })
-export class AnimalTypeComponent implements OnInit {
+export class AnimalTypeComponent
+  extends SpinnerBaseComponent
+  implements OnInit
+{
   data: AnimalType = new AnimalType();
-  constructor(private _service: AnimalTypeService, private _notificationService: NotificationService) { }
+
+  constructor(
+    spinner: NgxSpinnerService,
+    private _service: AnimalTypeService,
+    private _notificationService: NotificationService
+  ) {
+    super(spinner);
+  }
   updatePopupVisible: boolean = false;
   addPopupVisible: boolean = false;
   itemPerPage = 5;
@@ -20,62 +35,59 @@ export class AnimalTypeComponent implements OnInit {
   pageResult: PageResult = new PageResult();
   updatedAnimalTypeId: any;
   columns: any[] = [
-    { key: "id", caption: "Id" },
-    { key: "code", caption: "Kod" },
-    { key: "name", caption: "İsim" },
-    { key: "description", caption: "Açıklama" }
+    { key: 'id', caption: 'Id' },
+    { key: 'code', caption: 'Kod' },
+    { key: 'name', caption: 'İsim' },
+    { key: 'description', caption: 'Açıklama' },
   ];
   pagining: any = {
     page: 1,
     perPage: 5,
     sort: null,
-    filter: null
+    filter: null,
   };
 
   externalButtons: ExternalButtonModel[] = [
     {
-      id: "refresh",
+      id: 'refresh',
       action: (pagining: any) => this.getData(pagining),
-      text: "Yeniden Yükle",
-      styleCss: "btn btn-info",
+      text: 'Yeniden Yükle',
+      styleCss: 'btn btn-info',
       order: 1,
-      icon: "fa fa-refresh"
+      icon: 'fa fa-refresh',
     },
     {
-      id: "add",
+      id: 'add',
       action: () => this.openPopup(),
-      text: "Ekle",
-      styleCss: "btn btn-success",
+      text: 'Ekle',
+      styleCss: 'btn btn-success',
       order: 2,
-      icon: "fa fa-plus"
+      icon: 'fa fa-plus',
     },
     {
-      id: "update",
+      id: 'update',
       action: (id: any) => this.openUpdatePopup(id),
-      text: "Düzenle",
-      styleCss: "btn btn-warning",
+      text: 'Düzenle',
+      styleCss: 'btn btn-warning',
       order: 3,
-      icon: "fa fa-edit"
+      icon: 'fa fa-edit',
     },
     {
-      id: "delete",
+      id: 'delete',
       action: (animalTypeId: number) => this.deleteData(animalTypeId),
-      text: "Sil",
-      styleCss: "btn btn-danger",
+      text: 'Sil',
+      styleCss: 'btn btn-danger',
       order: 4,
-      icon: "fa fa-trash"
-    }
+      icon: 'fa fa-trash',
+    },
   ];
 
   ngOnInit() {
     this.getData(this.pagining);
-
   }
 
-
-
   deleteData(id: number) {
-    this._service.deleteAnimalType(id).subscribe(res => {
+    this._service.deleteAnimalType(id).subscribe((res) => {
       if (res.statusCode == 200) {
         this.getData(this.pagining);
       } else {
@@ -83,46 +95,46 @@ export class AnimalTypeComponent implements OnInit {
       }
     });
   }
-
   getData(pagining: any) {
     this.pagining = pagining ?? this.pagining;
-    this._service.getAnimalTypes(this.pagining).subscribe(res => {
+    this.showSpinner(SpinnerType.BallAtom);
+    this._service.getAnimalTypes(this.pagining).subscribe((res) => {
       if (res.statusCode == 200) {
         this.pageResult.count = res.count;
         this.pageResult.data = res.data;
         this.pageResult.totalCount = res.totalCount;
+        this.hideSpinner(SpinnerType.BallAtom);
       } else {
         //error basabiliriz..
       }
-    })
+    });
   }
 
-  displayStyle = "none";
-  displayStyleUpdate = "none";
+  displayStyle = 'none';
+  displayStyleUpdate = 'none';
   openPopup() {
-    this.displayStyle = "block";
+    this.displayStyle = 'block';
     this.addPopupVisible = true;
   }
 
   closePopup() {
-    this.displayStyle = "none";
+    this.displayStyle = 'none';
     this.getData(this.pagining);
     this.addPopupVisible = false;
   }
 
   openUpdatePopup(animalTypeId: any) {
-    this.displayStyleUpdate = "block";
+    this.displayStyleUpdate = 'block';
     if (animalTypeId) {
       this.updatePopupVisible = true;
       this.updatedAnimalTypeId = animalTypeId;
-    }
-    else {
-      alert("animal type id cannot be null");
+    } else {
+      alert('animal type id cannot be null');
     }
   }
 
   closeUpdatePopup() {
-    this.displayStyleUpdate = "none";
+    this.displayStyleUpdate = 'none';
     this.updatePopupVisible = false;
     this.getData(this.pagining);
   }

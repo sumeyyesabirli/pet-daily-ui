@@ -13,6 +13,8 @@ import { NotifierModule } from 'angular-notifier';
 import { notifierOptions } from './_services/notifierOptions';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     NotifierModule.withConfig(notifierOptions),
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxSpinnerModule
   ],
   providers: [NotificationService],
   bootstrap: [AppComponent]
