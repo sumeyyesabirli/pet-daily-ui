@@ -1,3 +1,47 @@
-<p>
-  profile works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="row row-cols-1 row-cols-md-1 g-4">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <button class="btn" (click)="update()">Düzenle</button>
+            </div>
+            <img
+              src="https://avatars.githubusercontent.com/u/99748544?s=400&u=0092b624d80e8923db4a428818969214c65b459e&v=4"
+              class="round-img-top round-img" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{user.fullName}}</h5>
+              <p>@{{user.username}}</p>
+              <p>
+                <span *ngIf="user.gender;else elseBlock">
+                  <span style="color:blue">Erkek</span>
+                </span>
+                <ng-template #elseBlock>
+                  <span style="color:red">Kadın</span>
+                </ng-template>
+              </p>
+              <p class="card-text">{{user.description}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <button class="btn" (click)="update()">Düzenle</button>
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Hayvanlarım</h5>
+              <p class="card-text" *ngFor="let animal of animalsByUser">
+                {{animal.name}}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+
+    </div>
+  </div>
+</div>

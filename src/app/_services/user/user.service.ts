@@ -9,13 +9,17 @@ import { User } from 'src/app/_models/user';
   providedIn: 'root'
 })
 export class UserService {
-
+  private controllerName = "/User";
 
   constructor(private httpService: HttpClientService) {
 
   }
 
   addUser(data: User) {
-    return this.httpService.post("/User", data);
+    return this.httpService.post(this.controllerName, data);
+  }
+
+  getUserById(id: number) {
+    return this.httpService.get(`${this.controllerName}/${id}`);
   }
 }
