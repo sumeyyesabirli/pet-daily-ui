@@ -11,6 +11,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { NotificationService } from './_services/notification.service';
 import { NotifierModule } from 'angular-notifier';
 import { notifierOptions } from './_services/notifierOptions';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +29,9 @@ import { notifierOptions } from './_services/notifierOptions';
     AppRoutingModule,
     HttpClientModule,
     NotifierModule.withConfig(notifierOptions),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    NgxSpinnerModule
   ],
   providers: [NotificationService],
   bootstrap: [AppComponent]

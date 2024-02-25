@@ -16,27 +16,31 @@
             </td>
           </tr>
           <tr>
-            <th *ngFor="let header of headers">
-              <div class="row">
-                <div class="col-md-9">
-                  <input class="form-control" [(ngModel)]="header.filterValue" placeholder="{{ header.caption }}">
+            <ng-container *ngFor="let header of headers">
+              <th *ngIf="header.key !== 'id'">
+                <div class="row">
+                  <div class="col-md-9">
+                    <input class="form-control" [(ngModel)]="header.filterValue" placeholder="{{ header.caption }}">
+                  </div>
+                  <div class="col-md-3">
+                    <button class="btn" (click)="filter(header.key)">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </div>
                 </div>
-                <div class="col-md-3">
-                  <button class="btn" (click)="filter(header.key)">
-                    <i class="fa fa-search"></i>
-                  </button>
-                </div>
-              </div>
-              {{ header.caption }}
-              <i (click)="shortAsc(header.key)" class="fa fa-arrow-up"></i>
-              <i (click)="shortDesc(header.key)" class="fa fa-arrow-down"></i>
-            </th>
+                {{ header.caption }}
+                <i (click)="shortAsc(header.key)" class="fa fa-arrow-up"></i>
+                <i (click)="shortDesc(header.key)" class="fa fa-arrow-down"></i>
+              </th>
+            </ng-container>
             <th> * </th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of pageResult.data">
-            <td *ngFor="let col of columns">{{ item[col.key] }}</td>
+            <ng-container *ngFor="let col of columns">
+              <td *ngIf="col.key !== 'id'">{{ item[col.key] }}</td>
+            </ng-container>
             <td>
               <div class="btn-group m-2">
                 <div *ngFor="let button of tdButtons">
