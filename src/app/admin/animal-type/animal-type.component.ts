@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 import { ExternalButtonModel } from 'src/app/_layout/_models/external-button-model';
 import { AnimalType } from 'src/app/_models/animal-type';
 import { PageResult } from 'src/app/_models/page-result';
@@ -24,7 +25,7 @@ export class AnimalTypeComponent
   constructor(
     spinner: NgxSpinnerService,
     private _service: AnimalTypeService,
-    private _notificationService: NotificationService
+    private _notificationService: ToastrService
   ) {
     super(spinner);
   }
@@ -90,9 +91,14 @@ export class AnimalTypeComponent
     this._service.deleteAnimalType(id).subscribe((res) => {
       if (res.statusCode == 200) {
         this.getData(this.pagining);
+        this._notificationService.success(res.message)
+
       } else {
         //error basabiliriz..
       }
+    },err=>{
+      this._notificationService.error(err.message)
+
     });
   }
   getData(pagining: any) {
@@ -106,8 +112,14 @@ export class AnimalTypeComponent
         this.hideSpinner(SpinnerType.BallAtom);
       } else {
         //error basabiliriz..
+        this._notificationService.error(res.message)
       }
-    });
+    },err=>{
+      console.log(err);
+      this._notificationService.error(err.message)
+      this.hideSpinner(SpinnerType.BallAtom)
+    }
+  );
   }
 
   displayStyle = 'none';
