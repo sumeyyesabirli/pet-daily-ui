@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClientService } from '../base-http-client.service';
-import { AnimalType } from 'src/app/_models/animal-type';
+import { AnimalType } from 'src/app/_models/animalType/animal-type';
 
 @Injectable({
   providedIn: 'root'

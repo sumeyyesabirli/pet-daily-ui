@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AnimalType } from 'src/app/_models/animal-type';
+import { AnimalType } from 'src/app/_models/animalType/animal-type';
 import { AnimalTypeService } from 'src/app/_services/admin/animal-type.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 

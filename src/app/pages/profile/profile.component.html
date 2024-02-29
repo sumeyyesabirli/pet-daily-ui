@@ -3,45 +3,59 @@
     <div class="col-lg-4">
       <div class="row row-cols-1 row-cols-md-1 g-4">
         <div class="col">
-          <div class="card">
-            <div class="card-header">
-              <button class="btn" (click)="update()">Düzenle</button>
+          <div class="card" style="background-color: #CBE4DE;">
+            <div class="card-header" style="background-color: #0E8388;">
+              <button class="btn" style="color: #FFFFFF;" (click)="openUpdatePopup(user.id)">Düzenle</button>
             </div>
-            <img
-              src="https://avatars.githubusercontent.com/u/99748544?s=400&u=0092b624d80e8923db4a428818969214c65b459e&v=4"
-              class="round-img-top round-img" alt="...">
+            <img src="https://avatars.githubusercontent.com/u/99748544?s=400&u=0092b624d80e8923db4a428818969214c65b459e&v=4" class="card-img-top round-img" alt="..." style="width: 100%; height: auto;">
             <div class="card-body">
-              <h5 class="card-title">{{user.fullName}}</h5>
+              <h5 class="card-title" style="color: #2C3333;">{{user.fullName}}</h5>
               <p>@{{user.username}}</p>
               <p>
-                <span *ngIf="user.gender;else elseBlock">
-                  <span style="color:blue">Erkek</span>
+                <span *ngIf="user.gender;else elseBlock" style="color: #364F6B;">
+                  <span>Erkek</span>
                 </span>
                 <ng-template #elseBlock>
-                  <span style="color:red">Kadın</span>
+                  <span style="color: #FC5185;">Kadın</span>
                 </ng-template>
               </p>
-              <p class="card-text">{{user.description}}</p>
+              <p class="card-text" style="color: #2C3333;">{{user.description}}</p>
             </div>
           </div>
         </div>
         <div class="col">
-          <div class="card">
-            <div class="card-header">
-              <button class="btn" (click)="update()">Düzenle</button>
+          <div class="card" style="background-color: #CBE4DE;">
+            <div class="card-header" style="background-color: #0E8388;">
+              <h5 class="card-title" style="color: #FFFFFF;">Hayvanlarım</h5>
             </div>
             <div class="card-body">
-              <h5 class="card-title">Hayvanlarım</h5>
-              <p class="card-text" *ngFor="let animal of animalsByUser">
+              <p class="card-text" *ngFor="let animal of animalsByUser" style="color: #2C3333;">
                 {{animal.name}}
+                <span class="delete-icon" style="cursor: pointer;" (click)="deleteAnimalByUser(animal.id)">❌</span>
               </p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-8">
-
-    </div>
+    <div class="col-lg-8"></div>
   </div>
 </div>
+
+<ng-container *ngIf="updatePopupVisible">
+  <div class="modal" role="dialog" [ngStyle]="{'display':displayStyleUpdate}">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Kullanıcı Bilgilerini Güncelle</h4>
+        </div>
+        <div class="modal-body">
+          <app-update-user [id]="updatedUserId"></app-update-user>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="closeUpdatePopup()">İptal</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
