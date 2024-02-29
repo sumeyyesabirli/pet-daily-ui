@@ -1,0 +1,33 @@
+<div class="form">
+  <div class="form-group">
+    <label>Kullanıcı Adı</label>
+    <input class="form-control" [(ngModel)]="data.username" placeholder="Lütfen Kullanıcı Adınızı giriniz">
+  </div>
+  <div class="form-group">
+    <label>E-posta</label>
+    <input class="form-control" [(ngModel)]="data.mail" type="email" placeholder="Lütfen e-posta giriniz">
+  </div>
+  <div class="form-group">
+    <label>İsim</label>
+    <input class="form-control" [(ngModel)]="data.firstName" placeholder="Lütfen isminizi giriniz">
+  </div>
+  <div class="form-group">
+    <label>Soyad</label>
+    <input class="form-control" [(ngModel)]="data.lastName" placeholder="Lütfen soyad giriniz">
+  </div>
+  <div class="form-group">
+    <label>Açıklama</label>
+    <input class="form-control" [(ngModel)]="data.description" placeholder="Lütfen açıklama giriniz">
+  </div>
+  <div class="form-group">
+    <label>Cinsiyet</label>
+    <select class="form-control" [(ngModel)]="data.gender">
+      <option [value]="true">Erkek</option>
+      <option [value]="false">Kadın</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success" (click)="updatedUser()">Güncelle</button>
+  </div>
+</div>
+

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { User } from 'src/app/_models/user';
+import { User } from 'src/app/_models/user/user';
 import { UserService } from 'src/app/_services/user/user.service';
 
 

@@ -1,8 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClientService } from '../base-http-client.service';
-import { Animal } from 'src/app/_models/animal';
+import { Animal } from 'src/app/_models/animal/animal';
 
 
 @Injectable({
@@ -21,5 +19,12 @@ export class AnimalService {
 
   getAnimalByUserId(userId: number) {
     return this.httpService.get(`${this.controllerName}/GetAnimalsByUserId/${userId}`);
+  }
+
+  deleteAnimal(id: number) {
+    return this.httpService.delete(`${this.controllerName}/${id}`);
+  }
+  getAnimalById(id: number){
+    return this.httpService.get(`${this.controllerName}/${id}`);
   }
 }

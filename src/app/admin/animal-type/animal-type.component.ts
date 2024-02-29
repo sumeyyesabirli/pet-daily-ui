@@ -2,14 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ExternalButtonModel } from 'src/app/_layout/_models/external-button-model';
-import { AnimalType } from 'src/app/_models/animal-type';
+import { AnimalType } from 'src/app/_models/animalType/animal-type';
 import { PageResult } from 'src/app/_models/page-result';
 import { AnimalTypeService } from 'src/app/_services/admin/animal-type.service';
-import { NotificationService } from 'src/app/_services/notification.service';
-import {
-  SpinnerBaseComponent,
-  SpinnerType,
-} from 'src/app/spinner-base/spinner-base.component';
+import { SpinnerBaseComponent,SpinnerType,} from 'src/app/spinner-base/spinner-base.component';
 
 @Component({
   selector: 'app-animal-type',
