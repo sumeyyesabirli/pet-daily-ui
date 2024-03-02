@@ -17,8 +17,8 @@ export class AnimalService {
     return this.httpService.post(this.controllerName, data);
   }
 
-  getAnimalByUserId(userId: number) {
-    return this.httpService.get(`${this.controllerName}/GetAnimalsByUserId/${userId}`);
+  getAnimalByUserId() {
+    return this.httpService.get(`${this.controllerName}/GetAnimalsByUserId`);
   }
 
   deleteAnimal(id: number) {

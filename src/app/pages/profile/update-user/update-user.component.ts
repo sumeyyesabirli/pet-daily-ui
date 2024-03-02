@@ -22,7 +22,7 @@ export class UpdateUserComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.id) {
-      this._userService.getUserById(this.id).subscribe((data) => {
+      this._userService.getUserById().subscribe((data) => {
         this.data = data.data;
       });
     }

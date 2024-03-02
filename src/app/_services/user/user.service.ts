@@ -19,8 +19,8 @@ export class UserService {
     return this.httpService.post(this.controllerName, data);
   }
 
-  getUserById(id: number) {
-    return this.httpService.get(`${this.controllerName}/${id}`);
+  getUserById() {
+    return this.httpService.get(`${this.controllerName}`);
   }
 
   updateUser(id: number, data: any) {

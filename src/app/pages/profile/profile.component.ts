@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Animal } from 'src/app/_models/animal/animal';
 import { User } from 'src/app/_models/user/user';
 import { AnimalService } from 'src/app/_services/animal/animal.service';
+import { AuthService } from 'src/app/_services/auth/auth.service';
 import { UserService } from 'src/app/_services/user/user.service';
 import {
   SpinnerBaseComponent,
@@ -20,7 +21,7 @@ export class ProfileComponent extends SpinnerBaseComponent implements OnInit {
     spinner: NgxSpinnerService,
     private _userService: UserService,
     private _animalService: AnimalService,
-    private _notificationService: ToastrService
+    private _notificationService: ToastrService,
   ) {
     super(spinner);
   }
@@ -37,15 +38,15 @@ export class ProfileComponent extends SpinnerBaseComponent implements OnInit {
 
   getUserInfo() {
     this.showSpinner(SpinnerType.Timer);
-    this._userService.getUserById(1).subscribe((res) => {
+    this._userService.getUserById().subscribe((res) => {
       this.user = res.data;
       this.hideSpinner(SpinnerType.Timer);
-      this.getAnimalsByUser(this.user.id);
+      this.getAnimalsByUser();
     });
   }
 
-  getAnimalsByUser(userId: number) {
-    this._animalService.getAnimalByUserId(userId).subscribe((res) => {
+  getAnimalsByUser() {
+    this._animalService.getAnimalByUserId().subscribe((res) => {
       this.animalsByUser = res.data;
     });
   }
@@ -59,7 +60,7 @@ export class ProfileComponent extends SpinnerBaseComponent implements OnInit {
       (res) => {
         if (res.statusCode == 200) {
           this._notificationService.success(res.message);
-          this.getAnimalsByUser(1);
+          this.getAnimalsByUser();
         } else {
           this._notificationService.error(res.message);
         }
