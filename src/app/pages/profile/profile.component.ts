@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { Animal } from 'src/app/_models/animal/animal';
+import { AnimalByUser } from 'src/app/_models/animalByUser/animalByUser';
+
 import { User } from 'src/app/_models/user/user';
 import { AnimalService } from 'src/app/_services/animal/animal.service';
-import { AuthService } from 'src/app/_services/auth/auth.service';
 import { UserService } from 'src/app/_services/user/user.service';
 import {
   SpinnerBaseComponent,
@@ -27,7 +27,7 @@ export class ProfileComponent extends SpinnerBaseComponent implements OnInit {
   }
 
   user: User = new User();
-  animal: Animal = new Animal();
+  animal: AnimalByUser = new AnimalByUser();
   animalsByUser: any[] = [];
   updatePopupVisible: boolean = false;
   updatedUserId: any;

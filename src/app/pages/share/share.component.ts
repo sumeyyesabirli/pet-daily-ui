@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Animal } from 'src/app/_models/animal/animal';
 import { Share } from 'src/app/_models/share/share';
 import { UserService } from 'src/app/_services/user/user.service';
 import { ShareService } from 'src/app/_services/share/share.service';
 import { AnimalService } from 'src/app/_services/animal/animal.service';
-import { AuthService } from 'src/app/_services/auth/auth.service';
+import { AnimalByUser } from 'src/app/_models/animalByUser/animalByUser';
 
 @Component({
   selector: 'app-share',
@@ -14,7 +13,7 @@ import { AuthService } from 'src/app/_services/auth/auth.service';
 })
 export class ShareComponent implements OnInit {
   shareData: Share = new Share();
-  animalsByUser: Animal[] = [];
+  animalsByUser: AnimalByUser[] = [];
   userId: any;
 
   constructor(

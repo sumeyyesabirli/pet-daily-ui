@@ -1,7 +1,8 @@
+
 import { AnimalType } from "../animalType/animal-type";
 import { User } from "../user/user";
 
-export class Animal {
+export class AnimalByUser {
   id: number = 0;
   animalTypeId: number = 0;
   name: string = '';

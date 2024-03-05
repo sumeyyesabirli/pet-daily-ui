@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClientService } from '../base-http-client.service';
-import { Animal } from 'src/app/_models/animal/animal';
+import { AnimalByUser } from 'src/app/_models/animalByUser/animalByUser';
 
 
 @Injectable({
@@ -13,7 +13,7 @@ export class AnimalService {
 
   }
 
-  addAnimal(data: Animal) {
+  addAnimal(data: AnimalByUser) {
     return this.httpService.post(this.controllerName, data);
   }
 

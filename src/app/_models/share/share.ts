@@ -1,4 +1,5 @@
-import { Animal } from "../animal/animal";
+
+import { AnimalByUser } from "../animalByUser/animalByUser";
 import { User } from "../user/user";
 
 export class Share {
@@ -7,7 +8,7 @@ export class Share {
   animalId?: number | null;
   description?: string = "";
   user?: User;
-  animal?: Animal;
+  animal?: AnimalByUser;
 }
 
 

@@ -1,4 +1,5 @@
-import { Animal } from "../animal/animal";
+import { AnimalByUser } from "../animalByUser/animalByUser";
+
 
 export class User {
   id: number = 0;
@@ -11,5 +12,5 @@ export class User {
   description?: string = "";
   gender: boolean = false;
   fullName: string = "";
-  animals?: Animal[];
+  animals?: AnimalByUser[];
 }
