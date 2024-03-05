@@ -1,5 +1,8 @@
+import { Animal } from "../animal/animal";
+
 export class User {
   id: number = 0;
+  imageUrl: string= "";
   username: string = "";
   password: string = "";
   mail: string = "";
@@ -8,4 +11,5 @@ export class User {
   description?: string = "";
   gender: boolean = false;
   fullName: string = "";
+  animals?: Animal[];
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ExternalButtonModel } from 'src/app/_layout/_models/external-button-model';
+import { Login } from 'src/app/_models/login/login';
 import { AuthService } from 'src/app/_services/auth/auth.service';
 
 @Component({
@@ -8,13 +9,7 @@ import { AuthService } from 'src/app/_services/auth/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginModel : {
-    username : string,
-    password: string
-  } = {
-    username : "",
-    password: ""
-  }
+  loginModel: Login = new Login
   constructor(private _authService: AuthService) { }
   passwordVisible: boolean = false;
 
