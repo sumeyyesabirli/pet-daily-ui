@@ -7,7 +7,7 @@
             <div class="card-header" style="background-color: #0E8388;">
               <button class="btn" style="color: #FFFFFF;" (click)="openUpdatePopup(user.id)">Düzenle</button>
             </div>
-            <img src="https://avatars.githubusercontent.com/u/99748544?s=400&u=0092b624d80e8923db4a428818969214c65b459e&v=4" class="card-img-top round-img" alt="..." style="width: 100%; height: auto;">
+           <img [src]="user.imageUrl" class="card-img-top round-img" alt="..." style="width: 100%; height: auto;">
             <div class="card-body">
               <h5 class="card-title" style="color: #2C3333;">{{user.fullName}}</h5>
               <p>@{{user.username}}</p>
@@ -41,21 +41,3 @@
     <div class="col-lg-8"></div>
   </div>
 </div>
-
-<ng-container *ngIf="updatePopupVisible">
-  <div class="modal" role="dialog" [ngStyle]="{'display':displayStyleUpdate}">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Kullanıcı Bilgilerini Güncelle</h4>
-        </div>
-        <div class="modal-body">
-          <app-update-user [id]="updatedUserId"></app-update-user>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" (click)="closeUpdatePopup()">İptal</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</ng-container>
