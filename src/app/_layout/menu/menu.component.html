@@ -1,9 +1,9 @@
-<div class="contanier">
+<div class="container">
   <div class="row">
-    <div class="col-sm-2">
+    <div class="col-sm-1">
       <a [routerLink]="['/main-page']">Ana Sayfa</a>
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-1">
       Ara
     </div>
     <div class="col-sm-2">
@@ -17,6 +17,9 @@
     </div>
     <div class="col-sm-2">
       <a [routerLink]="['/auth']">Giriş Yap</a>
+    </div>
+    <div class="col-sm-2">
+      <button (click)="logout()">Çıkış Yap</button>
     </div>
   </div>
 </div>
